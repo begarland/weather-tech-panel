@@ -1,6 +1,8 @@
 import axios from 'axios'
 const API_KEY = process.env.WEATHER_API_KEY
 
+// docs: https://openweathermap.org/current#data
+
 export function getCurrentWeatherByZipCode(
     zipCode: number,
     units: string = 'imperial'

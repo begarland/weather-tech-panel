@@ -1,9 +1,12 @@
 .widget {
-    background-color: blue;
+    background-color: white;
     position: relative;
     box-sizing: border-box;
     display: block;
     border-radius: $border-radius;
+    width: 48%;
+    margin-top: 20px;
+    margin-left: 1%;
 
     @media only screen and (max-width: $landscape-phone-and-below-max-width) {
         width: 100%;

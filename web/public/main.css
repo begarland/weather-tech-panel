@@ -21,11 +21,14 @@
   font-size: 20px; }
 
 .widget {
-  background-color: blue;
+  background-color: white;
   position: relative;
   box-sizing: border-box;
   display: block;
-  border-radius: 4px; }
+  border-radius: 4px;
+  width: 48%;
+  margin-top: 20px;
+  margin-left: 1%; }
   @media only screen and (max-width: 480px) {
     .widget {
       width: 100%;
