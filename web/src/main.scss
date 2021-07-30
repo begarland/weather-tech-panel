@@ -5,12 +5,14 @@
 @import 'sass-helpers/mixins';
 
 @import 'content/App';
-@import 'content/components/Widget';
+@import 'content/components/widget/Widget';
+@import 'content/components/spinner/Spinner';
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: $gray;
 }
 
 html {

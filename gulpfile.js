@@ -65,7 +65,7 @@ gulp.task('browserify', function () {
       module: 'commonjs',
       target: 'es2018',
     })
-    .transform(localenvify, { envfile: '.env.local' })
+    .transform(localenvify, { envfile: '.env' })
 
   var bundle = function () {
     return bundler

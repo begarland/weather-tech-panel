@@ -1,12 +1,10 @@
 import * as React from 'react'
-import Widget from './components/Widget'
+import CurrentWeatherWidget from './components/currentWeatherWidget/CurrentWeatherWidget'
 
-const App = () => {
+const App: React.FC = () => {
     return (
         <div className='App'>
-            <Widget title='Hello World'>
-                <span>testing children</span>
-            </Widget>
+            <CurrentWeatherWidget />
         </div>
     )
 }
