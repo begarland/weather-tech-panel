@@ -13,23 +13,27 @@
 /* fonts */
 /* style guide */
 .App {
-  text-align: center;
-  box-sizing: border-box;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+  display: block; }
 
-.App-splash-logo {
-  padding: 20px;
-  color: white; }
-
-.header-logo {
-  width: 100px;
-  cursor: pointer; }
-
-.header-text {
-  font-family: "carbon"; }
+.widget {
+  background-color: blue;
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  border-radius: 4px; }
+  @media only screen and (max-width: 480px) {
+    .widget {
+      width: 100%;
+      margin-top: 20px; } }
+  .widget h2 {
+    font-family: "carbon";
+    padding-left: 10px; }
+  .widget .children-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; }
 
 body {
   margin: 0;
@@ -41,7 +45,10 @@ html {
 
 #root {
   width: 100vw;
-  min-height: 100vh;
-  background-color: #222222; }
+  min-height: 100vh; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0; }
 
 /*# sourceMappingURL=main.css.map */

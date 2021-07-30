@@ -5,6 +5,7 @@
 @import 'sass-helpers/mixins';
 
 @import 'content/App';
+@import 'content/components/Widget';
 
 body {
   margin: 0;
@@ -19,5 +20,9 @@ html {
 #root {
   width: 100vw;
   min-height: 100vh;
-  background-color: $black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+ margin: 0;
+ padding: 0;
 }

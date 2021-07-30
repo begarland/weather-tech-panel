@@ -13,11 +13,15 @@ const epicMiddleware = createEpicMiddleware()
 
 let middleware
 if (process.env.NODE_ENV !== 'production') {
-  middleware = composeWithDevTools(
-    applyMiddleware(epicMiddleware, thunk, routerMiddleware(history))
-  )
+    middleware = composeWithDevTools(
+        applyMiddleware(epicMiddleware, thunk, routerMiddleware(history))
+    )
 } else {
-  middleware = applyMiddleware(epicMiddleware, thunk, routerMiddleware(history))
+    middleware = applyMiddleware(
+        epicMiddleware,
+        thunk,
+        routerMiddleware(history)
+    )
 }
 
 export default createStore(createRootReducer(history), {}, middleware)

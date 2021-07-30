@@ -1,16 +1,14 @@
 import * as React from 'react'
-
-const reactLogo = './assets/images/reactReduxTS.png'
+import Widget from './components/Widget'
 
 const App = () => {
-  return (
-    <div className='App'>
-      <div className='App-splash-logo'>
-        <img src={reactLogo} className={`header-logo`} />
-        <h2 className='header-text'>here goes nothing....</h2>
-      </div>
-    </div>
-  )
+    return (
+        <div className='App'>
+            <Widget title='Hello World'>
+                <span>testing children</span>
+            </Widget>
+        </div>
+    )
 }
 
 export default App
