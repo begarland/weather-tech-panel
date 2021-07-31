@@ -228,6 +228,26 @@
 .toggle-container {
   margin: 20px; }
 
+.zip-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; }
+  .zip-input-container input {
+    width: 300px; }
+    @media only screen and (max-width: 1028px) {
+      .zip-input-container input {
+        width: 80%; } }
+  .zip-input-container button {
+    color: white;
+    background-color: #222222;
+    height: 30px;
+    margin-left: -5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px; }
+
 body {
   margin: 0;
   padding: 0;
@@ -247,5 +267,32 @@ h1, h2, h3, h4, h5, h6, span, p {
 
 .bold {
   font-weight: bold; }
+
+input {
+  font-size: 16px;
+  padding-top: 0.2em;
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  padding-left: 0.5em;
+  margin-bottom: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: 2px;
+  border-radius: 5px;
+  border-color: #4c4c4c; }
+
+button {
+  border-radius: 5px;
+  border-color: #4c4c4c; }
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield; }
 
 /*# sourceMappingURL=main.css.map */

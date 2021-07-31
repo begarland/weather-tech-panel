@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentWeatherByZipCode } from '../../../apis/getCurrentWeatherByZipCode'
+import { FETCH_CURRENT_WEATHER_BY_ZIPCODE_SUCCESS } from '../../../redux/actions/actionTypes'
 import { IRootReducer } from '../../../redux/reducers'
 import CurrentWeatherBody, {
     ICurrentWeatherBody,
@@ -18,24 +19,36 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
     const units = useSelector((state: IRootReducer) => state.appState.units)
     const zipCode = useSelector((state: IRootReducer) => state.appState.zipCode)
 
+    const dispatch = useDispatch()
+
     React.useEffect(() => {
         setLoading(true)
         if (zipCode && zipCode.toString().length >= 5) {
+            setLoading(true)
             getCurrentWeatherByZipCode(zipCode, units).then((res) => {
-                setLoading(false)
-    
+                setLoading(false)    
                 if (res.status !== 200) {
                     setShowError(true)
                     setError('An error has occured, please try again.')
                 }
+
+                dispatch({type: FETCH_CURRENT_WEATHER_BY_ZIPCODE_SUCCESS, data: res.data})
     
                 const dataForDisplay: ICurrentWeatherBody = {
                     ...res.data?.main,
                     weather: res.data?.weather[0]?.description,
                     icon: res.data?.weather[0].icon,
                 }
-    
+                setShowError(false)
                 setValue(dataForDisplay)
+            }).catch((err) => {
+                setShowError(true)
+                if (err?.message.includes('404')) {
+                    setError('Please input a valid zipcode')
+                } else {
+                    setError('An error has occured, please try again.')
+
+                }
             })
         } else {
             setShowError(true)

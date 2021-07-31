@@ -1,0 +1,26 @@
+.zip-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    input {
+        width: 300px;
+        @media only screen and (max-width: $portrait-tablet-to-landscape-and-desktop-max-width) {
+            width: 80%;
+        }
+
+        
+    }
+
+    button {
+        color: $white;
+        background-color: $black;
+        height: 30px;
+        margin-left: -5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+}
