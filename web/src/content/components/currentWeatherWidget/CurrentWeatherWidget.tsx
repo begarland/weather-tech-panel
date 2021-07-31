@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { getCurrentWeatherByZipCode } from '../../../apis/getCurrentWeatherByZipCode'
-import CurrentWeather, {
-    ICurrentWeather,
-} from '../currentWeather/CurrentWeather'
+import CurrentWeatherBody, {
+    ICurrentWeatherBody,
+} from '../currentWeatherBody/CurrentWeatherBody'
 import Spinner from '../Spinner/Spinner'
 import Widget from '../widget/Widget'
 
 interface ICurrentWeatherWidget {}
 
 const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
-    const [value, setValue] = React.useState<ICurrentWeather | null>(null)
+    const [value, setValue] = React.useState<ICurrentWeatherBody | null>(null)
     const [loading, setLoading] = React.useState<boolean>(true)
     const [showError, setShowError] = React.useState<boolean>(false)
 
@@ -20,7 +20,14 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
             if (res.status !== 200) {
                 setShowError(true)
             }
-            setValue(res.data.main)
+
+            const dataForDisplay: ICurrentWeatherBody = {
+                ...res.data?.main,
+                weather: res.data?.weather[0]?.description,
+                icon: res.data?.weather[0].icon,
+            }
+
+            setValue(dataForDisplay)
         })
     }, [])
 
@@ -34,7 +41,7 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
                 )}
                 {!showError && (
                     <>
-                        {!loading && <CurrentWeather {...value} />}
+                        {!loading && <CurrentWeatherBody {...value} />}
                         {loading && <Spinner />}
                     </>
                 )}
