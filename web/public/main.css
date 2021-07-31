@@ -35,7 +35,8 @@
       margin-top: 20px; } }
   .widget h2 {
     font-family: "carbon";
-    padding-left: 10px; }
+    padding-left: 10px;
+    padding-top: 10px; }
   .widget .children-container {
     display: flex;
     justify-content: center;
