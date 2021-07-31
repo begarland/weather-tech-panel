@@ -14,33 +14,42 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
     const [value, setValue] = React.useState<ICurrentWeatherBody | null>(null)
     const [loading, setLoading] = React.useState<boolean>(true)
     const [showError, setShowError] = React.useState<boolean>(false)
+    const [error, setError] = React.useState<string>(null)
     const units = useSelector((state: IRootReducer) => state.appState.units)
+    const zipCode = useSelector((state: IRootReducer) => state.appState.zipCode)
 
     React.useEffect(() => {
         setLoading(true)
-        getCurrentWeatherByZipCode(80550, units).then((res) => {
-            setLoading(false)
-
-            if (res.status !== 200) {
-                setShowError(true)
-            }
-
-            const dataForDisplay: ICurrentWeatherBody = {
-                ...res.data?.main,
-                weather: res.data?.weather[0]?.description,
-                icon: res.data?.weather[0].icon,
-            }
-
-            setValue(dataForDisplay)
-        })
-    }, [units])
+        if (zipCode && zipCode.toString().length >= 5) {
+            getCurrentWeatherByZipCode(zipCode, units).then((res) => {
+                setLoading(false)
+    
+                if (res.status !== 200) {
+                    setShowError(true)
+                    setError('An error has occured, please try again.')
+                }
+    
+                const dataForDisplay: ICurrentWeatherBody = {
+                    ...res.data?.main,
+                    weather: res.data?.weather[0]?.description,
+                    icon: res.data?.weather[0].icon,
+                }
+    
+                setValue(dataForDisplay)
+            })
+        } else {
+            setShowError(true)
+            setError('Please input a zipcode')
+        }
+        
+    }, [zipCode, units])
 
     return (
         <Widget title='Current Weather'>
             <>
                 {showError && (
                     <span className='error-message'>
-                        An error has occured, please try again.
+                        {error}
                     </span>
                 )}
                 {!showError && (
