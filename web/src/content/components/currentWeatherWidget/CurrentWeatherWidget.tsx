@@ -1,5 +1,7 @@
 import * as React from 'react'
+import { useSelector } from 'react-redux'
 import { getCurrentWeatherByZipCode } from '../../../apis/getCurrentWeatherByZipCode'
+import { IRootReducer } from '../../../redux/reducers'
 import CurrentWeatherBody, {
     ICurrentWeatherBody,
 } from '../CurrentWeatherBody/CurrentWeatherBody'
@@ -12,9 +14,11 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
     const [value, setValue] = React.useState<ICurrentWeatherBody | null>(null)
     const [loading, setLoading] = React.useState<boolean>(true)
     const [showError, setShowError] = React.useState<boolean>(false)
+    const units = useSelector((state: IRootReducer) => state.appState.units)
 
     React.useEffect(() => {
-        getCurrentWeatherByZipCode(80550).then((res) => {
+        setLoading(true)
+        getCurrentWeatherByZipCode(80550, units).then((res) => {
             setLoading(false)
 
             if (res.status !== 200) {
@@ -29,7 +33,7 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
 
             setValue(dataForDisplay)
         })
-    }, [])
+    }, [units])
 
     return (
         <Widget title='Current Weather'>

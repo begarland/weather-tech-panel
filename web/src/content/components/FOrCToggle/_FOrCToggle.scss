@@ -1,0 +1,19 @@
+.toggle-label {
+    color: white;
+    margin-top: 6px;
+} 
+.c-label {
+    margin-left: -4px;
+}
+
+.react-toggle-track {
+    background-color: $red !important;
+}
+
+.react-toggle--checked .react-toggle-track  {
+    background-color: $blue !important;
+}
+
+.toggle-container {
+    margin: 20px;
+}

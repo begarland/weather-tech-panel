@@ -1,4 +1,7 @@
 import * as React from 'react'
+import { useSelector } from 'react-redux'
+import { imperial } from '../../ constants'
+import { IRootReducer } from '../../../redux/reducers'
 import DegreesFOrCLabel from '../DegreesFOrCLabel/DegreesFOrCLabel'
 
 export interface ICurrentWeatherBody {
@@ -18,7 +21,9 @@ const CurrentWeatherBody: React.FC<ICurrentWeatherBody> = ({
     weather,
     icon,
 }) => {
-    const UnitsLabel = <DegreesFOrCLabel units='imperial' />
+    const units = useSelector((state: IRootReducer) => state.appState.units)
+
+    const UnitsLabel = <DegreesFOrCLabel units={units}/>
 
     return (
         <div className='current-weather-body'>

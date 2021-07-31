@@ -212,6 +212,22 @@
         .current-weather-body .high-low-container .desc {
           margin-right: unset; } }
 
+.toggle-label {
+  color: white;
+  margin-top: 6px; }
+
+.c-label {
+  margin-left: -4px; }
+
+.react-toggle-track {
+  background-color: #ee3333 !important; }
+
+.react-toggle--checked .react-toggle-track {
+  background-color: #3366aa !important; }
+
+.toggle-container {
+  margin: 20px; }
+
 body {
   margin: 0;
   padding: 0;

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { imperial } from '../content/ constants'
 const API_KEY = process.env.WEATHER_API_KEY
 
 // docs: https://openweathermap.org/api/one-call-api
@@ -6,7 +7,7 @@ const API_KEY = process.env.WEATHER_API_KEY
 export function getCurrentWeatherByLatLong(
     lat: number,
     long: number,
-    units: string = 'imperial'
+    units: string = imperial
 ): Promise<any> {
     return axios.get(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=${units}&appid=${API_KEY}`

@@ -3,7 +3,7 @@ import { createBrowserHistory } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { routerMiddleware } from 'connected-react-router'
 import thunk from 'redux-thunk'
-import createRootReducer, { rootEpic } from '../reducers/index'
+import { rootEpic, rootReducer, RootState } from '../reducers/index'
 
 export const history = createBrowserHistory()
 
@@ -24,5 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
     )
 }
 
-export default createStore(createRootReducer(history), {}, middleware)
+const reducer: RootState = rootReducer(history)
+
+export default createStore(reducer, {}, middleware)
 epicMiddleware.run(rootEpic)
