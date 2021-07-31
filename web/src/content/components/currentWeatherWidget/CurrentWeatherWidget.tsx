@@ -2,9 +2,9 @@ import * as React from 'react'
 import { getCurrentWeatherByZipCode } from '../../../apis/getCurrentWeatherByZipCode'
 import CurrentWeatherBody, {
     ICurrentWeatherBody,
-} from '../currentWeatherBody/CurrentWeatherBody'
+} from '../CurrentWeatherBody/CurrentWeatherBody'
 import Spinner from '../Spinner/Spinner'
-import Widget from '../widget/Widget'
+import Widget from '../Widget/Widget'
 
 interface ICurrentWeatherWidget {}
 
