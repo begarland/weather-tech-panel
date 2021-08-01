@@ -21,10 +21,13 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
 
     const dispatch = useDispatch()
 
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
+        setShowError(false)
         setLoading(true)
+    }, [zipCode, units])
+    
+    React.useEffect(() => {
         if (zipCode && zipCode.toString().length >= 5) {
-            setLoading(true)
             getCurrentWeatherByZipCode(zipCode, units).then((res) => {
                 setLoading(false)    
                 if (res.status !== 200) {

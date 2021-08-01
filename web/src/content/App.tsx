@@ -1,6 +1,7 @@
 import * as React from 'react'
 import CurrentWeatherWidget from './components/CurrentWeatherWidget/CurrentWeatherWidget'
 import FOrCToggle from './components/FOrCToggle/FOrCToggle'
+import ForecastWidget from './components/ForecastWidget/ForecastWidget'
 import ZipInput from './components/ZipInput/ZipInput'
 
 const App: React.FC = () => {
@@ -8,6 +9,7 @@ const App: React.FC = () => {
         <div className='App'>
             <ZipInput />
             <CurrentWeatherWidget />
+            <ForecastWidget />
             <FOrCToggle />
         </div>
     )
