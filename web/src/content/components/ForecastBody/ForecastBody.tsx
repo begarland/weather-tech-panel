@@ -27,8 +27,16 @@ const ForecastBody: React.FC<IForecastBody> = ({ list }) => {
     React.useEffect(() => {
         if (list && list.length) {
             const forecastData = list.map((datum) => {
+                const date = new Date(0)
+                date.setUTCSeconds(datum.dt)
+
                 return {
-                    datetime: datum.dt_txt,
+                    datetime: `${
+                        date.getMonth() + 1
+                    }/${date.getDate()} ${date.toLocaleString('en-US', {
+                        hour: 'numeric',
+                        hour12: true,
+                    })}`,
                     high: Number(datum.main?.temp_max.toFixed(0)),
                     low: Number(datum.main?.temp_min.toFixed(0)),
                 }
