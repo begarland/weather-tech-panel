@@ -2,6 +2,7 @@ import {
     CHANGE_UNITS,
     CHANGE_ZIPCODE,
     FETCH_CURRENT_WEATHER_BY_ZIPCODE_SUCCESS,
+    FETCH_FORECAST_BY_ZIPCODE_SUCCESS,
 } from '../actions/actionTypes'
 import { appState, IAppState } from '../store/templates/appState'
 
@@ -23,6 +24,12 @@ export default (state: IAppState = appState, action) => {
             return {
                 ...state,
                 currentWeatherDataByZipCode: action.data,
+            }
+        }
+        case FETCH_FORECAST_BY_ZIPCODE_SUCCESS: {
+            return {
+                ...state,
+                forecastDataByZipCode: action.data,
             }
         }
         default: {

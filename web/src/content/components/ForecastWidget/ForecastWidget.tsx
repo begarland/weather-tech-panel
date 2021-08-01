@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFiveDayForecastByZipCode } from '../../../apis/getFiveDayForecastByZipCode'
+import { FETCH_FORECAST_BY_ZIPCODE_SUCCESS } from '../../../redux/actions/actionTypes'
 import { IRootReducer } from '../../../redux/reducers'
 import ForecastBody, { IForecastBody } from '../ForecastBody/ForecastBody'
 import Spinner from '../Spinner/Spinner'
@@ -32,7 +33,16 @@ const ForecastWidget: React.FC<IForecastWidget> = ({}) => {
                     setShowError(true)
                     setError('An error has occured, please try again.')
                 } else {
-                    console.log(res.data)
+                    dispatch({
+                        type: FETCH_FORECAST_BY_ZIPCODE_SUCCESS,
+                        data: res.data,
+                    })
+
+                    const dataForDisplay: IForecastBody = {
+                        list: res.data?.list,
+                    }
+                    setShowError(false)
+                    setValue(dataForDisplay)
                 }
             })
         } else {

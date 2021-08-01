@@ -2,5 +2,8 @@
   "extends": ["tslint-plugin-prettier"],
   "rules": {
     "prettier": [true, ".prettierrc.json"]
-  }
+  },
+  "exclude": [
+    "node_modules/**"
+ ]
 }
