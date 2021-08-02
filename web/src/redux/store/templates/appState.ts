@@ -1,4 +1,5 @@
 import {
+    ICurrentWeatherAndForecastByLatLon,
     ICurrentWeatherByZipCode,
     IForecastByZipCode,
 } from '../../../apis/responseInterfaces'
@@ -9,6 +10,7 @@ export const appState: IAppState = {
     units: imperial,
     currentWeatherDataByZipCode: null,
     forecastDataByZipCode: null,
+    currentWeatherAndForecastDataByLatLon: null,
 }
 
 export interface IAppState {
@@ -16,4 +18,5 @@ export interface IAppState {
     units: 'imperial' | 'metric'
     currentWeatherDataByZipCode: ICurrentWeatherByZipCode | null
     forecastDataByZipCode: IForecastByZipCode | null
+    currentWeatherAndForecastDataByLatLon: ICurrentWeatherAndForecastByLatLon | null
 }

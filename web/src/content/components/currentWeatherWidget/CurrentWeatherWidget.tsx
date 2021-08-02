@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentWeatherByZipCode } from '../../../apis/getCurrentWeatherByZipCode'
-import { FETCH_CURRENT_WEATHER_BY_ZIPCODE_SUCCESS } from '../../../redux/actions/actionTypes'
+import { FETCH_CURRENT_WEATHER_BY_ZIPCODE_SUCCESS, FETCH_FAIL } from '../../../redux/actions/actionTypes'
 import { IRootReducer } from '../../../redux/reducers'
 import CurrentWeatherBody, {
     ICurrentWeatherBody,
@@ -33,6 +33,7 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
                 if (res.status !== 200) {
                     setShowError(true)
                     setError('An error has occured, please try again.')
+                    dispatch({ type: FETCH_FAIL })
                 }
 
                 dispatch({type: FETCH_CURRENT_WEATHER_BY_ZIPCODE_SUCCESS, data: res.data})
@@ -56,6 +57,7 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
         } else {
             setShowError(true)
             setError('Please input a zipcode')
+            dispatch({ type: FETCH_FAIL })
         }
         
     }, [zipCode, units])

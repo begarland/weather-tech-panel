@@ -9,10 +9,11 @@ import {
     Legend,
     ResponsiveContainer,
 } from 'recharts'
-import { IForecastList } from '../../../apis/responseInterfaces'
+import { IDailyForecast } from '../../../apis/responseInterfaces'
+import { round5 } from '../../utils'
 
 export interface IForecastBody {
-    list: IForecastList[]
+    list: IDailyForecast[]
 }
 
 interface IData {
@@ -23,25 +24,37 @@ interface IData {
 
 const ForecastBody: React.FC<IForecastBody> = ({ list }) => {
     const [data, setData] = React.useState<IData[] | null>(null)
+    const [yAxisDomain, setYAxisDomain] = React.useState<number[]>([0, 100])
 
     React.useEffect(() => {
         if (list && list.length) {
+            const highs = []
+            const lows = []
             const forecastData = list.map((datum) => {
                 const date = new Date(0)
                 date.setUTCSeconds(datum.dt)
 
+                const high = Number(datum.temp?.max.toFixed(0))
+                const low = Number(datum.temp?.min.toFixed(0))
+
+                highs.push(high)
+                lows.push(low)
+
                 return {
-                    datetime: `${
-                        date.getMonth() + 1
-                    }/${date.getDate()} ${date.toLocaleString('en-US', {
-                        hour: 'numeric',
-                        hour12: true,
-                    })}`,
-                    high: Number(datum.main?.temp_max.toFixed(0)),
-                    low: Number(datum.main?.temp_min.toFixed(0)),
+                    datetime: `${date.getMonth() + 1}/${date.getDate()}`,
+                    high,
+                    low,
                 }
             })
 
+            const yDomainMin = round5(
+                lows.reduce((a, b) => Math.min(a, b)) - 10
+            )
+            const yDomainMax = round5(
+                highs.reduce((a, b) => Math.max(a, b)) + 10
+            )
+
+            setYAxisDomain([yDomainMin, yDomainMax])
             setData(forecastData)
         }
     }, [list])
@@ -62,11 +75,21 @@ const ForecastBody: React.FC<IForecastBody> = ({ list }) => {
                 >
                     <CartesianGrid strokeDasharray='3 3' />
                     <XAxis dataKey='datetime' />
-                    <YAxis />
+                    <YAxis domain={yAxisDomain} type='number' />
                     <Tooltip />
                     <Legend />
-                    <Line type='monotone' dataKey='high' stroke='#ee3333' />
-                    <Line type='monotone' dataKey='low' stroke='#3366aa' />
+                    <Line
+                        isAnimationActive={false}
+                        type='monotone'
+                        dataKey='high'
+                        stroke='#ee3333'
+                    />
+                    <Line
+                        isAnimationActive={false}
+                        type='monotone'
+                        dataKey='low'
+                        stroke='#3366aa'
+                    />
                 </LineChart>
             </ResponsiveContainer>
         </div>

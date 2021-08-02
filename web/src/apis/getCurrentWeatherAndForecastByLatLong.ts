@@ -4,7 +4,7 @@ const API_KEY = process.env.WEATHER_API_KEY
 
 // docs: https://openweathermap.org/api/one-call-api
 
-export function getCurrentWeatherByLatLong(
+export function getCurrentWeatherAndForecastByLatLong(
     lat: number,
     long: number,
     units: string = imperial

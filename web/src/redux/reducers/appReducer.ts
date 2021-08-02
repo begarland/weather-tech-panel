@@ -1,7 +1,9 @@
 import {
     CHANGE_UNITS,
     CHANGE_ZIPCODE,
+    FETCH_CURRENT_WEATHER_AND_FORECAST_BY_LAT_LON_SUCCESS,
     FETCH_CURRENT_WEATHER_BY_ZIPCODE_SUCCESS,
+    FETCH_FAIL,
     FETCH_FORECAST_BY_ZIPCODE_SUCCESS,
 } from '../actions/actionTypes'
 import { appState, IAppState } from '../store/templates/appState'
@@ -30,6 +32,20 @@ export default (state: IAppState = appState, action) => {
             return {
                 ...state,
                 forecastDataByZipCode: action.data,
+            }
+        }
+        case FETCH_CURRENT_WEATHER_AND_FORECAST_BY_LAT_LON_SUCCESS: {
+            return {
+                ...state,
+                currentWeatherAndForecastDataByLatLon: action.data,
+            }
+        }
+        case FETCH_FAIL: {
+            return {
+                ...state,
+                currentWeatherDataByZipCode: null,
+                forecastDataByZipCode: null,
+                currentWeatherAndForecastDataByLatLon: null,
             }
         }
         default: {

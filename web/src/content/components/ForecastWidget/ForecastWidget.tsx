@@ -1,7 +1,10 @@
 import * as React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getFiveDayForecastByZipCode } from '../../../apis/getFiveDayForecastByZipCode'
-import { FETCH_FORECAST_BY_ZIPCODE_SUCCESS } from '../../../redux/actions/actionTypes'
+import { getCurrentWeatherAndForecastByLatLong } from '../../../apis/getCurrentWeatherAndForecastByLatLong'
+import {
+    FETCH_CURRENT_WEATHER_AND_FORECAST_BY_LAT_LON_SUCCESS,
+    FETCH_FAIL,
+} from '../../../redux/actions/actionTypes'
 import { IRootReducer } from '../../../redux/reducers'
 import ForecastBody, { IForecastBody } from '../ForecastBody/ForecastBody'
 import Spinner from '../Spinner/Spinner'
@@ -15,43 +18,52 @@ const ForecastWidget: React.FC<IForecastWidget> = ({}) => {
     const [showError, setShowError] = React.useState<boolean>(false)
     const [error, setError] = React.useState<string>(null)
     const units = useSelector((state: IRootReducer) => state.appState.units)
-    const zipCode = useSelector((state: IRootReducer) => state.appState.zipCode)
+    const coord = useSelector(
+        (state: IRootReducer) =>
+            state.appState?.currentWeatherDataByZipCode?.coord
+    )
 
     const dispatch = useDispatch()
 
     React.useLayoutEffect(() => {
         setShowError(false)
         setLoading(true)
-    }, [zipCode, units])
+    }, [coord, units])
 
     React.useEffect(() => {
         setLoading(true)
-        if (zipCode) {
-            getFiveDayForecastByZipCode(zipCode, units).then((res) => {
-                setLoading(false)
-                if (res.status !== 200) {
-                    setShowError(true)
-                    setError('An error has occured, please try again.')
-                } else {
-                    dispatch({
-                        type: FETCH_FORECAST_BY_ZIPCODE_SUCCESS,
-                        data: res.data,
-                    })
+        if (coord?.lat && coord?.lon) {
+            const { lat, lon } = coord
+            getCurrentWeatherAndForecastByLatLong(lat, lon, units).then(
+                (res) => {
+                    setLoading(false)
+                    if (res.status !== 200) {
+                        setShowError(true)
+                        setError('An error has occured, please try again.')
+                        dispatch({ type: FETCH_FAIL })
+                    } else {
+                        console.log(res.data)
+                        dispatch({
+                            type: FETCH_CURRENT_WEATHER_AND_FORECAST_BY_LAT_LON_SUCCESS,
+                            data: res.data,
+                        })
 
-                    const dataForDisplay: IForecastBody = {
-                        list: res.data?.list,
+                        const dataForDisplay: IForecastBody = {
+                            list: res.data?.daily,
+                        }
+                        setShowError(false)
+                        setValue(dataForDisplay)
                     }
-                    setShowError(false)
-                    setValue(dataForDisplay)
                 }
-            })
+            )
         } else {
             setShowError(true)
             setError('Please input a zipcode')
+            dispatch({ type: FETCH_FAIL })
         }
-    }, [zipCode, units])
+    }, [coord, units])
     return (
-        <Widget title='Weather Forecast'>
+        <Widget title='7 day highs and lows'>
             <>
                 {showError && <span className='error-message'>{error}</span>}
                 {!showError && (
