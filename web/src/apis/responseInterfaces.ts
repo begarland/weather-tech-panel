@@ -108,6 +108,7 @@ export interface ICurrentWeatherAndForecastByLatLon {
     minutely: IMinutelyForecast[]
     hourly: IHourlyForecast[]
     daily: IDailyForecast[]
+    alerts: IAlert[]
 }
 
 export interface ICurrentForecast {
@@ -202,4 +203,13 @@ export interface IDailyForecast {
     clouds: number
     pop: number
     uvi: number
+}
+
+export interface IAlert {
+    sender_name: string
+    event: string
+    start: number
+    end: number
+    description: string
+    tags: string[]
 }

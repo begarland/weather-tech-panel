@@ -42,7 +42,6 @@ const ForecastWidget: React.FC<IForecastWidget> = ({}) => {
                         setError('An error has occured, please try again.')
                         dispatch({ type: FETCH_FAIL })
                     } else {
-                        console.log(res.data)
                         dispatch({
                             type: FETCH_CURRENT_WEATHER_AND_FORECAST_BY_LAT_LON_SUCCESS,
                             data: res.data,

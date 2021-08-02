@@ -7,10 +7,12 @@ import ZipInput from './components/ZipInput/ZipInput'
 const App: React.FC = () => {
     return (
         <div className='App'>
-            <ZipInput />
+            <div className='zip-and-toggle-container'>
+                <ZipInput />
+                <FOrCToggle />
+            </div>
             <CurrentWeatherWidget />
             <ForecastWidget />
-            <FOrCToggle />
         </div>
     )
 }

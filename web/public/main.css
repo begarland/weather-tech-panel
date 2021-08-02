@@ -16,20 +16,24 @@
   height: 100vh;
   display: block; }
 
-.error-message {
-  color: red;
-  font-size: 20px; }
+.zip-and-toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row; }
 
 .widget {
   background-color: white;
   position: relative;
   box-sizing: border-box;
-  display: block;
   border-radius: 4px;
   width: 48%;
   margin-top: 20px;
-  margin-left: 1%; }
-  @media only screen and (max-width: 1028px) {
+  margin-left: 1%;
+  margin-right: 1%;
+  display: inline-block;
+  vertical-align: top; }
+  @media only screen and (max-width: 1024px) {
     .widget {
       width: 98%;
       margin-top: 20px; } }
@@ -128,7 +132,7 @@
 .current-weather-body {
   display: flex;
   width: 100%; }
-  @media only screen and (max-width: 1028px) {
+  @media only screen and (max-width: 1024px) {
     .current-weather-body {
       flex-direction: column;
       text-align: center; } }
@@ -138,7 +142,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center; }
-    @media only screen and (max-width: 1028px) {
+    @media only screen and (max-width: 1024px) {
       .current-weather-body .current-temp-and-feels-like-container {
         width: 100%; } }
     .current-weather-body .current-temp-and-feels-like-container .current-temp {
@@ -147,10 +151,10 @@
       display: flex;
       justify-content: center;
       align-items: center; }
-      @media only screen and (max-width: 1028px) {
+      @media only screen and (max-width: 1024px) {
         .current-weather-body .current-temp-and-feels-like-container .current-temp {
           font-size: 10vw; } }
-      @media only screen and (max-width: 1028px) and (orientation: landscape) {
+      @media only screen and (max-width: 1024px) and (orientation: landscape) {
         .current-weather-body .current-temp-and-feels-like-container .current-temp {
           font-size: 15vw; } }
       @media only screen and (max-width: 480px) {
@@ -166,7 +170,7 @@
     justify-content: center;
     align-items: center;
     text-align: center; }
-    @media only screen and (max-width: 1028px) {
+    @media only screen and (max-width: 1024px) {
       .current-weather-body .icon-and-weather-container {
         width: 100%; } }
     .current-weather-body .icon-and-weather-container .weather-desc {
@@ -174,7 +178,7 @@
       font-size: 22px; }
     .current-weather-body .icon-and-weather-container .weather-icon {
       width: 150px; }
-    @media only screen and (max-width: 1028px) {
+    @media only screen and (max-width: 1024px) {
       .current-weather-body .icon-and-weather-container {
         margin-bottom: 10px; } }
   .current-weather-body .high-low-container {
@@ -182,10 +186,10 @@
     text-align: center;
     display: flex;
     flex-direction: column; }
-    @media only screen and (max-width: 1028px) {
+    @media only screen and (max-width: 1024px) {
       .current-weather-body .high-low-container {
         width: 100%; } }
-    @media only screen and (max-width: 1028px) {
+    @media only screen and (max-width: 1024px) {
       .current-weather-body .high-low-container {
         display: block; } }
     .current-weather-body .high-low-container .high-low {
@@ -195,7 +199,7 @@
       align-items: center;
       font-size: 30px;
       padding-top: 30px; }
-      @media only screen and (max-width: 1028px) {
+      @media only screen and (max-width: 1024px) {
         .current-weather-body .high-low-container .high-low {
           height: unset;
           width: 50%;
@@ -208,7 +212,7 @@
       color: #3366aa; }
     .current-weather-body .high-low-container .desc {
       margin-right: 5px; }
-      @media only screen and (max-width: 1028px) {
+      @media only screen and (max-width: 1024px) {
         .current-weather-body .high-low-container .desc {
           margin-right: unset; } }
 
@@ -232,12 +236,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px; }
+  margin-top: -3px; }
   .zip-input-container input {
     width: 300px; }
-    @media only screen and (max-width: 1028px) {
+    @media only screen and (max-width: 1024px) {
       .zip-input-container input {
-        width: 80%; } }
+        width: 75%; } }
   .zip-input-container button {
     color: white;
     background-color: #222222;
@@ -298,5 +302,9 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield; }
+
+.error-message {
+  color: red;
+  font-size: 20px; }
 
 /*# sourceMappingURL=main.css.map */
