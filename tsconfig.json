@@ -13,7 +13,9 @@
     "pretty": true,
     "noErrorTruncation": true,
     "emitDecoratorMetadata": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true
+
   },
 
   "exclude": [
@@ -21,7 +23,8 @@
     "server",
     "public",
     "scripts",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "jest"
   ],
   "include": ["web/src/**/*.tsx", "web/src/**/*.ts"]
 }
