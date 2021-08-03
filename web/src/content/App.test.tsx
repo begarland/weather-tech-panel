@@ -69,7 +69,7 @@ const setup = (overrides?) => {
 }
 
 describe('App', () => {
-    test('renders as expected', async () => {
+    test('renders with expected components', async () => {
         setup()
 
         const zipInput = screen.getByTestId(/zip-input/i)

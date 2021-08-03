@@ -304,7 +304,10 @@ input[type=number] {
   -moz-appearance: textfield; }
 
 .error-message {
-  color: red;
+  color: #ee3333;
+  font-size: 20px; }
+
+.message {
   font-size: 20px; }
 
 /*# sourceMappingURL=main.css.map */

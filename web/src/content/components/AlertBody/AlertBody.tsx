@@ -5,8 +5,8 @@ export interface IAlertBody {
     alert: IAlert
 }
 
-const AlertBody: React.FC<IAlertBody> = ({}) => {
-    return <>i am the alerts body</>
+const AlertBody: React.FC<IAlertBody> = ({ alert }) => {
+    return <>{alert.description}</>
 }
 
 export default AlertBody

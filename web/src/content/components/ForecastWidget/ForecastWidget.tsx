@@ -30,7 +30,6 @@ const ForecastWidget: React.FC<IForecastWidget> = ({}) => {
     }, [coord, units])
 
     React.useEffect(() => {
-        setLoading(true)
         if (coord?.lat && coord?.lon) {
             const { lat, lon } = coord
             getCurrentWeatherAndForecastByLatLong(lat, lon, units).then(

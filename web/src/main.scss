@@ -71,6 +71,10 @@ input[type=number] {
 }
 
 .error-message {
-  color: red;
+  color: $red;
+  font-size: 20px;
+}
+
+.message {
   font-size: 20px;
 }
