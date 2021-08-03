@@ -12,6 +12,7 @@ const ZipInput: React.FC<IZipInput> = ({}) => {
     return (
         <div className='zip-input-container'>
             <input
+                data-testid='zip-input'
                 placeholder='Enter zipcode'
                 type='number'
                 value={zip}
