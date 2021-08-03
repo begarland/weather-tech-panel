@@ -17,11 +17,10 @@ const ForecastWidget: React.FC<IForecastWidget> = ({}) => {
     const [loading, setLoading] = React.useState<boolean>(true)
     const [showError, setShowError] = React.useState<boolean>(false)
     const [error, setError] = React.useState<string>(null)
-    const units = useSelector((state: IRootReducer) => state.appState.units)
-    const coord = useSelector(
-        (state: IRootReducer) =>
-            state.appState?.currentWeatherDataByZipCode?.coord
+    const { units, currentWeatherDataByZipCode } = useSelector(
+        (state: IRootReducer) => state.appState
     )
+    const coord = currentWeatherDataByZipCode?.coord
 
     const dispatch = useDispatch()
 

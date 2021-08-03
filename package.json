@@ -154,7 +154,7 @@
     "production-sass": "sass --sourcemap=none web/src/main.scss:web/public/main.css",
     "production-web": "browserify web/src/index.tsx -p tsify -g [ envify --NODE_ENV production ] -g [ uglifyify ] -o web/public/bundle.js -v",
     "start": "ts-node server/index.ts; npm run prod-build",
-    "test": "jest --color --verbose --expand --watchAll",
+    "test": "jest --color --verbose --expand --watchAll --forceExit ",
     "watch-server": "cross-env NODE_ENV=development node_modules/.bin/nodemon --exec 'concurrently --raw \"npm run lint\" \"node_modules/.bin/ts-node server/index.ts\"'"
   },
   "version": "0.0.0",

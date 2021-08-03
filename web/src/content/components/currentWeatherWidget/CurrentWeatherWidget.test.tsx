@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, Provider } from 'react-redux'
 import { render, screen, act } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import store from '../../../redux/store/store'
-import { getCurrentWeatherByZipCode } from '../../../apis/getCurrentWeatherByZipCode'
 
+import store from '../../../redux/store/store'
 import CurrentWeatherWidget from './CurrentWeatherWidget'
-import { Provider } from 'react-redux'
+import { getCurrentWeatherByZipCode } from '../../../apis/getCurrentWeatherByZipCode'
 import { imperial } from '../../constants'
 
 jest.mock('react-redux', () => ({
@@ -35,7 +34,7 @@ jest.mock('../Spinner/Spinner', () => {
 })
 
 jest.mock('../../../apis/getCurrentWeatherByZipCode.ts')
-const currentWeather = Promise.resolve({})
+const currentWeather = Promise.resolve({ status: 200 })
 ;(getCurrentWeatherByZipCode as any).mockImplementation(() => currentWeather)
 
 const setup = (overrides?) => {
