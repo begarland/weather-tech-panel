@@ -14,7 +14,7 @@ const setup = (overrides?) => {
 }
 
 describe('Widget', () => {
-    test('renders as expected', async () => {
+    test('renders as a widget with a title and a body', async () => {
         setup()
 
         const title = screen.getByText(/hello world/i)

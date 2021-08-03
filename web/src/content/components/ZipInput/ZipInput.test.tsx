@@ -22,7 +22,7 @@ const setup = (overrides?) => {
 }
 
 describe('ZipInput', () => {
-    test('renders as expected', async () => {
+    test('renders an input and a button, clicking the button dispatches CHANGE_ZIPCODE with zipcode', async () => {
         setup()
 
         const useDispatchSpy = jest.spyOn(redux, 'useDispatch')

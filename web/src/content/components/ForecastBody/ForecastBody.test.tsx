@@ -45,7 +45,7 @@ const setup = (overrides?) => {
 }
 
 describe('ForecastBody', () => {
-    test('renders as expected', async () => {
+    test('renders a line graph', async () => {
         setup()
 
         const responsiveContianer = screen.getByTestId('responsive-chart')

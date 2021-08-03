@@ -13,7 +13,7 @@ const setup = (overrides?) => {
 }
 
 describe('Spinner', () => {
-    test('renders as expected', async () => {
+    test('renders a spinner', async () => {
         setup()
         const spinner = screen.getByTestId('spinner-component')
         expect(spinner).toBeInTheDocument()

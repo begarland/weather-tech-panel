@@ -19,7 +19,7 @@ const setup = (overrides?) => {
 }
 
 describe('FOrCToggle', () => {
-    test('renders as expected', async () => {
+    test('renders a toggle that switches from F to C on click', async () => {
         setup()
 
         const toggle = screen.getByTestId('toggle')

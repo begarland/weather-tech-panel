@@ -26,7 +26,7 @@ const setup = (overrides?) => {
 }
 
 describe('CurrentWeatherBody', () => {
-    test('renders as expected', async () => {
+    test('renders with current temp, feels like, high, low, and current weather', async () => {
         setup()
 
         const currentTemp = screen.getByText(/70/i)
