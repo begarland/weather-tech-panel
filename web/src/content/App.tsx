@@ -1,4 +1,5 @@
 import * as React from 'react'
+import AlertsWidget from './components/AlertsWidget/AlertsWidget'
 import CurrentWeatherWidget from './components/CurrentWeatherWidget/CurrentWeatherWidget'
 import FOrCToggle from './components/FOrCToggle/FOrCToggle'
 import ForecastWidget from './components/ForecastWidget/ForecastWidget'
@@ -13,6 +14,7 @@ const App: React.FC = () => {
             </div>
             <CurrentWeatherWidget />
             <ForecastWidget />
+            <AlertsWidget />
         </div>
     )
 }

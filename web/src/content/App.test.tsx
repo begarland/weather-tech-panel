@@ -1,0 +1,89 @@
+import * as React from 'react'
+import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom'
+
+import App from './App'
+import { Provider } from 'react-redux'
+import store from '../redux/store/store'
+
+jest.mock('./components/ZipInput/ZipInput', () => {
+    const React = require('react')
+    return {
+        __esModule: true,
+        default() {
+            return <div data-testid='zip-input' />
+        },
+    }
+})
+
+jest.mock('./components/FOrCToggle/FOrCToggle', () => {
+    const React = require('react')
+    return {
+        __esModule: true,
+        default() {
+            return <div data-testid='f-or-c-toggle' />
+        },
+    }
+})
+
+jest.mock('./components/CurrentWeatherWidget/CurrentWeatherWidget', () => {
+    const React = require('react')
+    return {
+        __esModule: true,
+        default() {
+            return <div data-testid='current-weather-widget' />
+        },
+    }
+})
+
+jest.mock('./components/ForecastWidget/ForecastWidget', () => {
+    const React = require('react')
+    return {
+        __esModule: true,
+        default() {
+            return <div data-testid='forecast-widget' />
+        },
+    }
+})
+
+jest.mock('./components/AlertsWidget/AlertsWidget', () => {
+    const React = require('react')
+    return {
+        __esModule: true,
+        default() {
+            return <div data-testid='alerts-widget' />
+        },
+    }
+})
+
+const setup = (overrides?) => {
+    const props = {
+        ...overrides,
+    }
+
+    return render(
+        <Provider store={store as any}>
+            <App {...props} />
+        </Provider>
+    )
+}
+
+describe('App', () => {
+    test('renders as expected', async () => {
+        setup()
+
+        const zipInput = screen.getByTestId(/zip-input/i)
+        const fOrCToggle = screen.getByTestId(/f-or-c-toggle/i)
+        const currentWeatherWidget = screen.getByTestId(
+            /current-weather-widget/i
+        )
+        const forecastWidget = screen.getByTestId(/forecast-widget/i)
+        const alertsWidget = screen.getByTestId(/alerts-widget/i)
+
+        expect(zipInput).toBeInTheDocument()
+        expect(fOrCToggle).toBeInTheDocument()
+        expect(currentWeatherWidget).toBeInTheDocument()
+        expect(forecastWidget).toBeInTheDocument()
+        expect(alertsWidget).toBeInTheDocument()
+    })
+})
