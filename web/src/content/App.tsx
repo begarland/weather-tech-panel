@@ -12,9 +12,11 @@ const App: React.FC = () => {
                 <ZipInput />
                 <FOrCToggle />
             </div>
-            <CurrentWeatherWidget />
-            <ForecastWidget />
-            <AlertsWidget />
+            <div className='widget-container'>
+                <CurrentWeatherWidget />
+                <ForecastWidget />
+                <AlertsWidget />
+            </div>
         </div>
     )
 }

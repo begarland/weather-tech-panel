@@ -1,9 +1,8 @@
 import * as React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { IAlert } from '../../../apis/responseInterfaces'
-import { FETCH_FAIL } from '../../../redux/actions/actionTypes'
 import { IRootReducer } from '../../../redux/reducers'
-import AlertBody, { IAlertBody } from '../AlertBody/AlertBody'
+import AlertBody from '../AlertBody/AlertBody'
 import Spinner from '../Spinner/Spinner'
 import Widget from '../Widget/Widget'
 
@@ -18,8 +17,6 @@ const AlertsWidget: React.FC<IAlertsWidget> = ({}) => {
     const { zipCode, units, currentWeatherAndForecastDataByLatLon } =
         useSelector((state: IRootReducer) => state.appState)
     const alerts = currentWeatherAndForecastDataByLatLon?.alerts
-
-    const dispatch = useDispatch()
 
     React.useLayoutEffect(() => {
         setShowError(false)
