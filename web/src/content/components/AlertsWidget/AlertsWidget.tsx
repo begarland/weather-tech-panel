@@ -62,8 +62,8 @@ const AlertsWidget: React.FC<IAlertsWidget> = ({}) => {
                             )}
                             {alertsData && (
                                 <>
-                                    {alertsData.map((alert) => (
-                                        <AlertBody alert={alert} />
+                                    {alertsData.map((alert, index) => (
+                                        <AlertBody alert={alert} key={index} />
                                     ))}
                                 </>
                             )}

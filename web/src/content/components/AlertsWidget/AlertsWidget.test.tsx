@@ -53,7 +53,7 @@ describe('AlertsWidget', () => {
     test('renders with a title and a no alerts message', async () => {
         const appState = {
             currentWeatherAndForecastDataByLatLon: {
-                zipCode: 80550
+                zipCode: 80550,
             },
         }
         ;(useSelector as jest.Mock<any>).mockImplementation((callback) => {
@@ -65,9 +65,21 @@ describe('AlertsWidget', () => {
         const message = screen.getByText(/no current alerts/i)
         expect(message).toBeInTheDocument()
     })
-    // test('renders with a title and correct number of alerts', async () => {
-    //     setup()
-    //     const title = screen.getByText('Alerts')
-    //     expect(title).toBeInTheDocument()
-    // })
+    test('renders with a title and correct number of alerts', async () => {
+        const appState = {
+            currentWeatherAndForecastDataByLatLon: {
+                zipCode: 80550,
+                alerts: [{}, {}],
+            },
+        }
+        ;(useSelector as jest.Mock<any>).mockImplementation((callback) => {
+            return callback({ appState: appState })
+        })
+        setup()
+        const title = screen.getByText('Alerts')
+        expect(title).toBeInTheDocument()
+
+        const alerts = screen.getAllByTestId(/alert-body/i)
+        expect(alerts).toHaveLength(2)
+    })
 })
