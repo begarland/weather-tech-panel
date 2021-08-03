@@ -3,7 +3,7 @@ import {
     ICurrentWeatherByZipCode,
     IForecastByZipCode,
 } from '../../../apis/responseInterfaces'
-import { imperial } from '../../../content/ constants'
+import { imperial } from '../../../content/constants'
 
 export const appState: IAppState = {
     zipCode: null,

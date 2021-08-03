@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 
 import DegreesFOrCLabel from './DegreesFOrCLabel'
-import { imperial, metric } from '../../ constants'
+import { imperial, metric } from '../../constants'
 
 const setup = (overrides?) => {
     const props = {

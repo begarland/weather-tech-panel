@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { degrees, imperial, metric } from '../../ constants'
+import { degrees, imperial, metric } from '../../constants'
 
 interface IDegreesFOrCLabel {
     units: 'imperial' | 'metric'

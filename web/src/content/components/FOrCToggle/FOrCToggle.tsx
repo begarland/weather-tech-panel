@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Toggle from 'react-toggle'
-import { degrees, imperial, metric } from '../../ constants'
+import { degrees, imperial, metric } from '../../constants'
 import { useSelector, useDispatch } from 'react-redux'
 import { IRootReducer } from '../../../redux/reducers'
 import { CHANGE_UNITS } from '../../../redux/actions/actionTypes'

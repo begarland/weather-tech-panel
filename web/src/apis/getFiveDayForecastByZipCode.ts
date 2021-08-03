@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { imperial } from '../content/ constants'
+import { imperial } from '../content/constants'
 const API_KEY = process.env.WEATHER_API_KEY
 
 // docs https://openweathermap.org/forecast5

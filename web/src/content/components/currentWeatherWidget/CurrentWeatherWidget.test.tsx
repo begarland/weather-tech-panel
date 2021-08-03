@@ -7,16 +7,19 @@ import { getCurrentWeatherByZipCode } from '../../../apis/getCurrentWeatherByZip
 
 import CurrentWeatherWidget from './CurrentWeatherWidget'
 import { Provider } from 'react-redux'
-import { imperial } from '../../ constants'
+import { imperial } from '../../constants'
 
-const weather = Promise.resolve({})
+jest.mock('react-redux', () => ({
+    ...(jest as any).requireActual('react-redux'),
+    useSelector: jest.fn(),
+}))
 
 jest.mock('../CurrentWeatherBody/CurrentWeatherBody', () => {
     const React = require('react')
     return {
         __esModule: true,
         default() {
-            return <div data-testid='current-body-mock' />
+            return <div data-testid='current-weather-body-mock' />
         },
     }
 })
@@ -32,11 +35,8 @@ jest.mock('../Spinner/Spinner', () => {
 })
 
 jest.mock('../../../apis/getCurrentWeatherByZipCode.ts')
-jest.mock('react-redux', () => ({
-    ...(jest as any).requireActual('react-redux'),
-    useSelector: jest.fn(),
-}))
-;(getCurrentWeatherByZipCode as any).mockImplementation(() => weather)
+const currentWeather = Promise.resolve({})
+;(getCurrentWeatherByZipCode as any).mockImplementation(() => currentWeather)
 
 const setup = (overrides?) => {
     const props = {
@@ -82,9 +82,11 @@ describe('CurrentWeatherWidget', () => {
         const spinner = screen.getByTestId('spinner-mock')
         expect(spinner).toBeInTheDocument()
 
-        await act(() => weather)
+        await act(() => currentWeather)
 
-        const currentWeatherBody = screen.getByTestId('current-body-mock')
+        const currentWeatherBody = screen.getByTestId(
+            'current-weather-body-mock'
+        )
         expect(currentWeatherBody).toBeInTheDocument()
     })
 })
