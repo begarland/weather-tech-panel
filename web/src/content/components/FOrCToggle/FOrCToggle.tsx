@@ -1,6 +1,5 @@
 import * as React from 'react'
 import Toggle from 'react-toggle'
-import 'react-toggle/style.css'
 import { degrees, imperial, metric } from '../../ constants'
 import { useSelector, useDispatch } from 'react-redux'
 import { IRootReducer } from '../../../redux/reducers'
@@ -15,6 +14,7 @@ const FOrCToggle: React.FC<IFOrCToggle> = ({}) => {
     return (
         <div className='toggle-container'>
             <Toggle
+                data-testid='toggle'
                 defaultChecked={units === imperial}
                 onChange={() =>
                     dispatch({
