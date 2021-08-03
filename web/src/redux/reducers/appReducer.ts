@@ -17,9 +17,17 @@ export default (state: IAppState = appState, action) => {
             }
         }
         case CHANGE_ZIPCODE: {
+            if (action.zipCode === state.zipCode) {
+                return {
+                    ...state,
+                }
+            }
             return {
                 ...state,
                 zipCode: action.zipCode,
+                currentWeatherDataByZipCode: null,
+                forecastDataByZipCode: null,
+                currentWeatherAndForecastDataByLatLon: null,
             }
         }
         case FETCH_CURRENT_WEATHER_BY_ZIPCODE_SUCCESS: {

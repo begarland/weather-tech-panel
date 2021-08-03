@@ -50,7 +50,6 @@ const CurrentWeatherWidget: React.FC<ICurrentWeatherWidget> = ({}) => {
                     setError('Please input a valid zipcode')
                 } else {
                     setError('An error has occured, please try again.')
-
                 }
             })
         } else {

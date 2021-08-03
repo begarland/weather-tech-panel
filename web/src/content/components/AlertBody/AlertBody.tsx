@@ -6,7 +6,7 @@ export interface IAlertBody {
 }
 
 const AlertBody: React.FC<IAlertBody> = ({ alert }) => {
-    return <>{alert.description}</>
+    return <span className='error-message'>{alert.description}</span>
 }
 
 export default AlertBody

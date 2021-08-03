@@ -15,9 +15,8 @@ const AlertsWidget: React.FC<IAlertsWidget> = ({}) => {
     const [showError, setShowError] = React.useState<boolean>(true)
     const [error, setError] = React.useState<string>(null)
 
-    const { currentWeatherAndForecastDataByLatLon } = useSelector(
-        (state: IRootReducer) => state.appState
-    )
+    const { zipCode, units, currentWeatherAndForecastDataByLatLon } =
+        useSelector((state: IRootReducer) => state.appState)
     const alerts = currentWeatherAndForecastDataByLatLon?.alerts
 
     const dispatch = useDispatch()
@@ -25,9 +24,11 @@ const AlertsWidget: React.FC<IAlertsWidget> = ({}) => {
     React.useLayoutEffect(() => {
         setShowError(false)
         setLoading(true)
-    }, [alerts])
+    }, [zipCode, alerts, currentWeatherAndForecastDataByLatLon, units])
 
     React.useEffect(() => {
+        setLoading(true)
+
         if (alerts) {
             setLoading(false)
             setAlertsData(alerts)
@@ -37,15 +38,11 @@ const AlertsWidget: React.FC<IAlertsWidget> = ({}) => {
             !alerts
         ) {
             setLoading(false)
-            setShowError(false)
         } else {
             setShowError(true)
             setError('Please input a zipcode')
-            dispatch({ type: FETCH_FAIL })
         }
-    }, [currentWeatherAndForecastDataByLatLon, alerts])
-
-    React.useEffect(() => {}, [])
+    }, [zipCode, currentWeatherAndForecastDataByLatLon, alerts, units])
 
     return (
         <Widget title='Alerts'>

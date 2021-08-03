@@ -17,7 +17,7 @@ const ForecastWidget: React.FC<IForecastWidget> = ({}) => {
     const [loading, setLoading] = React.useState<boolean>(true)
     const [showError, setShowError] = React.useState<boolean>(false)
     const [error, setError] = React.useState<string>(null)
-    const { units, currentWeatherDataByZipCode } = useSelector(
+    const { zipCode, units, currentWeatherDataByZipCode } = useSelector(
         (state: IRootReducer) => state.appState
     )
     const coord = currentWeatherDataByZipCode?.coord
@@ -56,7 +56,6 @@ const ForecastWidget: React.FC<IForecastWidget> = ({}) => {
         } else {
             setShowError(true)
             setError('Please input a zipcode')
-            dispatch({ type: FETCH_FAIL })
         }
     }, [coord, units])
     return (
