@@ -37,6 +37,7 @@ const AlertsWidget: React.FC<IAlertsWidget> = ({}) => {
             Object.keys(currentWeatherAndForecastDataByLatLon)?.length &&
             !alerts
         ) {
+            setAlertsData(alerts)
             setLoading(false)
         } else {
             setShowError(true)

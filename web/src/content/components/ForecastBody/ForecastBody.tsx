@@ -64,7 +64,7 @@ const ForecastBody: React.FC<IForecastBody> = ({ list }) => {
             <ResponsiveContainer width='100%' height='100%'>
                 <LineChart
                     width={500}
-                    height={300}
+                    height={200}
                     data={data}
                     margin={{
                         top: 5,
