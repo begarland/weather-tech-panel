@@ -56,6 +56,16 @@ jest.mock('./components/AlertsWidget/AlertsWidget', () => {
     }
 })
 
+jest.mock('./components/RainWidget/RainWidget', () => {
+    const React = require('react')
+    return {
+        __esModule: true,
+        default() {
+            return <div data-testid='rain-widget' />
+        },
+    }
+})
+
 const setup = (overrides?) => {
     const props = {
         ...overrides,
@@ -79,11 +89,13 @@ describe('App', () => {
         )
         const forecastWidget = screen.getByTestId(/forecast-widget/i)
         const alertsWidget = screen.getByTestId(/alerts-widget/i)
+        const rainWidget = screen.getByTestId(/rain-widget/i)
 
         expect(zipInput).toBeInTheDocument()
         expect(fOrCToggle).toBeInTheDocument()
         expect(currentWeatherWidget).toBeInTheDocument()
         expect(forecastWidget).toBeInTheDocument()
         expect(alertsWidget).toBeInTheDocument()
+        expect(rainWidget).toBeInTheDocument()
     })
 })
