@@ -269,6 +269,14 @@
   align-items: center;
   width: 100%; }
 
+.city-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .city-container span {
+    font-size: 30px;
+    font-weight: bold; }
+
 body {
   margin: 0;
   padding: 0;

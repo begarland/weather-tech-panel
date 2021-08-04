@@ -26,6 +26,16 @@ jest.mock('./components/FOrCToggle/FOrCToggle', () => {
     }
 })
 
+jest.mock('./components/CityContainer/CityContainer', () => {
+    const React = require('react')
+    return {
+        __esModule: true,
+        default() {
+            return <div data-testid='city-container' />
+        },
+    }
+})
+
 jest.mock('./components/CurrentWeatherWidget/CurrentWeatherWidget', () => {
     const React = require('react')
     return {
@@ -84,6 +94,7 @@ describe('App', () => {
 
         const zipInput = screen.getByTestId(/zip-input/i)
         const fOrCToggle = screen.getByTestId(/f-or-c-toggle/i)
+        const cityContainer = screen.getByTestId(/city-container/i)
         const currentWeatherWidget = screen.getByTestId(
             /current-weather-widget/i
         )
@@ -93,6 +104,7 @@ describe('App', () => {
 
         expect(zipInput).toBeInTheDocument()
         expect(fOrCToggle).toBeInTheDocument()
+        expect(cityContainer).toBeInTheDocument()
         expect(currentWeatherWidget).toBeInTheDocument()
         expect(forecastWidget).toBeInTheDocument()
         expect(alertsWidget).toBeInTheDocument()
