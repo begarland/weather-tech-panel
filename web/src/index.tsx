@@ -6,7 +6,6 @@ import history from './redux/store/history'
 import { ConnectedRouter } from 'connected-react-router'
 import { Route } from 'react-router'
 import 'date-input-polyfill'
-import 'react-toggle/style.css'
 import App from './content/App'
 
 ReactDOM.render(
